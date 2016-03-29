@@ -1,0 +1,34 @@
+// Example of creating inner classes and using comparators
+
+
+// https://projectlombok.org/features/Data.html
+// @Data generates all the boilerplate that is normally associated with simple POJOs (Plain Old Java Objects) and beans: 
+// getters for all fields, setters for all non-final fields, and appropriate toString, equals and hashCode
+@Data
+public static class Student {
+	private final String name;
+	private final int grade;
+}
+
+public static class GradeComparator implements Comparator<Student> {
+	@Override public int compare(Student o1, Student o2) {
+		// descending order (ascending order would be: o1.getGrade()-o2.getGrade())
+		return o2.getGrade() - o1.getGrade();
+	}
+}
+
+public static void main(String args[]) {
+	
+	List<Student> students = new ArrayList<>();
+	students.add(new Student("Jim", 22));
+	students.add(new Student("Elizabeth", 19));
+	students.add(new Student("Bob", 30));
+
+	Dump(students, "Order of students before sorting is: ");
+
+	Collections.sort(students, new GradeComparator());
+	Dump(students, "Order of students after sorting by student grade is");
+
+	Collections.sort(students, (Student r, Student s) -> r.getName().compareTo(s.getName()));
+	Dump(students, "Order of students after sorting by student name is");
+}

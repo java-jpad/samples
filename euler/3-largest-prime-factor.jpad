@@ -1,0 +1,17 @@
+// @url https://projecteuler.net/problem=3
+
+// starting from the smallest prime, factorise it till we have all them
+long n = 600851475143L;
+long lgstPrime = 1;
+
+// assuming it's not divisible by 2 step in 2's
+for (long i=3; n != 1;) {
+	if((n % i) == 0) {
+		n = n/i;
+		lgstPrime = i;
+	} else {
+		i += 2;
+	}
+}
+
+System.out.println(lgstPrime);

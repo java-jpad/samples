@@ -1,0 +1,29 @@
+// @url http://stackoverflow.com/questions/3481828/how-to-split-a-string-in-java
+
+String string = "004-034556";
+String[] parts = string.split("-");
+Dump(parts);
+
+// Note that split() takes a regular expression, so remember to escape special characters if necessary.
+// there are 12 characters with special meanings: 
+//  \  ^ $ . | ? * + ( ) [ {
+// These special characters are often called "metacharacters".
+
+// So, if you want to split on e.g. period/dot . which means "any character" in regex, 
+// use either backslash \ to escape the individual special character like so split("\\."), 
+// or use character class [] to represent literal character(s) like so split("[.]"), 
+// or use Pattern#quote() to escape the entire string like so split(Pattern.quote(".")).
+
+Dump("hello.to.the.world.".split("."));
+Dump("hello.to.the.world.".split(Pattern.quote(".")));
+
+
+// Apache Commons - StringUtils - http://commons.apache.org/proper/commons-lang/javadocs/api-2.6/org/apache/commons/lang/StringUtils.html#split(java.lang.String,%20char)
+Dump(StringUtils.split("hello.to.the.world.","."));
+
+// Guava - Splitter https://code.google.com/p/guava-libraries/wiki/StringsExplained#Splitter
+Iterable<String> s = Splitter.on('.')
+       .trimResults()
+       .omitEmptyStrings()
+       .split("hello.to.the.world.");
+Dump(s);

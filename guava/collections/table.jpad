@@ -1,0 +1,13 @@
+// useful for mapping from multiple "index" objects
+
+HashBasedTable<Integer, String, Double> tab = HashBasedTable.create();
+tab.put(2, "man", 4.0);
+tab.put(3, "woman", 20.0);
+tab.put(1, "child", 5.0);
+tab.put(100, "child", 500.0);
+
+Dump(tab);
+
+Dump(tab.row(2)); 
+
+Dump(tab.column("child"));

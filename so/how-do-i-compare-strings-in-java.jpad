@@ -1,0 +1,22 @@
+// @url http://stackoverflow.com/questions/513832/how-do-i-compare-strings-in-java
+
+// == tests for reference equality (whether they are the same object).
+// .equals() tests for value equality (whether they are logically "equal").
+// Objects.equals() checks for nulls before calling .equals() so you don't have to (available as of JDK7, also available in Guava).
+// Consequently, if you want to test whether two strings have the same value you will probably want to use Objects.equals().
+
+
+Dump(new String("test").equals("test"), "These two have the same value");
+
+Dump(new String("test") == "test", "but they are not the same object");
+
+Dump(new String("test") == new String("test"), "neither are these");
+
+// ... but these are because literals are interned by 
+// the compiler and thus refer to the same object
+Dump("test" == "test");
+
+// Objects class available as of JDK7, also available in Guava.
+// checks for nulls and calls .equals()
+Dump(Objects.equals("test", new String("test")));
+Dump(Objects.equals(null, "test"));

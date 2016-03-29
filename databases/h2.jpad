@@ -1,0 +1,51 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+public static void main(String[] args) throws Exception {
+   
+	execute("CREATE TABLE PERSON(id int primary key, name varchar(255))");
+	insertPerson(1, "Jim");
+	insertPerson(2, "Kim");
+	insertPerson(3, "Barry");
+
+	try (Connection connection = getDBConnection()){
+       Statement stmt = connection.createStatement();
+       Dump(stmt.executeQuery("select * from PERSON"), "select all");
+       Dump(stmt.executeQuery("select * from PERSON WHERE ID<2"), "Filtered");
+	}
+	execute("DROP TABLE PERSON");
+}
+
+private static void execute(String sql) throws SQLException {
+	try (Connection connection = getDBConnection();
+       Statement stmt = connection.createStatement()) {
+       stmt.execute(sql);
+   }
+}
+
+private static void insertPerson(int id, String name) throws SQLException {
+
+   String InsertQuery = "INSERT INTO PERSON" + "(id, name) values" + "(?,?)";
+	try (Connection connection = getDBConnection();
+			PreparedStatement stmt = connection.prepareStatement(InsertQuery)) {
+		stmt.setInt(1, id);
+		stmt.setString(2, name);
+		stmt.executeUpdate();
+   }
+}
+
+
+private static Connection getDBConnection() {
+   try {
+       Class.forName("org.h2.Driver");
+   	return DriverManager.getConnection("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1", "", "");
+   } catch (ClassNotFoundException | SQLException e) {
+       System.out.println(e.getMessage());
+   }
+   return null;
+}

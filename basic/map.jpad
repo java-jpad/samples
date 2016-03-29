@@ -1,0 +1,5 @@
+Map<String,Integer> a = new HashMap<String,Integer>();
+a.put("one",1);
+a.put("two",2);
+a.put("one hundred",100);
+Dump(a);

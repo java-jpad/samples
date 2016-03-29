@@ -1,0 +1,34 @@
+// @url http://stackoverflow.com/questions/153724/how-to-round-a-number-to-n-decimal-places-in-java
+
+// What I'd like is a method to convert a double to a string which rounds using the half-up method. 
+// I.e. if the decimal to be rounded is a 5, it always rounds up the previous number. 
+// This is the standard method of rounding most people expect in most situations.
+// I also would like only significant digits to be displayed. That is there should not be any trailing zeroes.
+
+double[] nums = new double[] { 12.0, 123.12345, 0.23, 0.1, 2341234.212431324 };
+
+// https://docs.oracle.com/javase/7/docs/api/java/text/DecimalFormat.html
+DecimalFormat df = new DecimalFormat("#.####");
+
+for (double d : nums) {
+    System.out.print(" " + d);
+}
+
+System.out.println("\r\nrounding mode:" + df.getRoundingMode());
+for (double d : nums) {
+    System.out.print(" " + df.format(d));
+}
+
+// http://docs.oracle.com/javase/8/docs/api/java/math/RoundingMode.html
+df.setRoundingMode(RoundingMode.CEILING);
+System.out.println("\r\nrounding mode:" + df.getRoundingMode());
+for (double d : nums) {
+    System.out.print(" " + df.format(d));
+}
+
+// The 0 means always show number even if zero
+DecimalFormat dfmt = new DecimalFormat("#.####");
+System.out.println("\r\nDecimalFormat: 0.0000");
+for (double d : nums) {
+    System.out.print(" " + dfmt.format(d));
+}

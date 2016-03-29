@@ -1,0 +1,32 @@
+//create a multiset collection
+ Multiset<String> multiset = HashMultiset.create();
+ 
+ multiset.add("a");
+ multiset.add("b");
+ multiset.add("c");
+ multiset.add("a");
+ multiset.add("b");
+ multiset.add("c");
+ multiset.add("d");
+ multiset.add("a");
+ multiset.add("a");
+ multiset.add("a");
+ 
+ //print the occurrence of an element
+ Dump(multiset);
+ Dump("Occurrence of 'b' :" + multiset.count("b"));
+ Dump("Total size of the multiset: "+multiset.size());
+  Dump("");
+ Dump("Distinct elements of the multiset as set:");
+ Set<String> set = multiset.elementSet();
+ Dump(set);
+ 
+ Dump("\r\nIterating:");
+ for (Multiset.Entry<String> entry : multiset.entrySet()) {
+    System.out.println("Element: " + entry.getElement() + ", Occurrence(s): " + entry.getCount());		    
+ }
+
+Dump("\nRemove b occurrences");
+Dump("Occurrence of 'a' : "+multiset.count("a"));
+multiset.remove("a",2);
+Dump("Occurrence of 'a' : "+multiset.count("a"));

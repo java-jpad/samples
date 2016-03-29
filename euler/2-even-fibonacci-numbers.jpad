@@ -1,0 +1,12 @@
+// @url https://projecteuler.net/problem=2
+
+int d=1,e=2,f=3,sum=2;
+
+while(e < 4_000_000) {
+	if(f%2==0) { sum += f;}
+	f = d + e;
+	d = e;
+	e = f;
+}
+
+Dump(sum);

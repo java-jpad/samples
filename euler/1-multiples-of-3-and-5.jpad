@@ -1,0 +1,9 @@
+// @url https://projecteuler.net/problem=1
+
+Dump(sum(where(or(equal(0,mod(til(1000),3)), equal(0,mod(til(1000),5))))));
+
+int sum = 0;
+for(int i : til(1000)) {
+	if(i%3==0 || i%5==0) { sum+=i; }
+}
+Dump(sum);

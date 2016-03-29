@@ -1,0 +1,21 @@
+// @url http://stackoverflow.com/questions/5585779/converting-string-to-int-in-java
+
+// Converting a string is called parsing and is called like so
+// http://docs.oracle.com/javase/8/docs/api/java/lang/Integer.html#parseInt-java.lang.String-int-
+int a = Integer.parseInt("1234");
+Dump(a);
+
+// Similar classes and functions exist for each type
+double d = Double.parseDouble("5.678");
+Dump(d);
+
+// But be careful, if the string a user entered is not a number
+// a NumberFormatException is thrown
+int b = -1;
+String s = "notANumber";
+try {
+      b = Integer.parseInt(s);
+} catch (NumberFormatException e) {
+      Dump("Exception thrown as s was not an int");
+}
+Dump(b);

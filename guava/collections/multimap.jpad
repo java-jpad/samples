@@ -1,0 +1,17 @@
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Multimap;
+
+Multimap<String, String> animals = ArrayListMultimap.create();
+animals.put("fish", "salmon");
+animals.put("fish", "cod");
+animals.put("fish", "trout");
+animals.put("bird", "eagle");
+animals.put("bird", "owl");
+animals.put("insect", "ant");
+animals.put("insect", "bee");
+animals.put("insect", "beetle");
+
+Collection<String> fishies = animals.get("fish");
+
+Dump(animals, "animals");
+Dump(animals.get("fish"), "Just the Fish");

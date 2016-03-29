@@ -1,0 +1,25 @@
+// @url http://stackoverflow.com/questions/1200621/declare-array-java
+
+// You can either use array declaration or array literal 
+// (but only when you declare and affect the variable right away, array literals cannot be used for re-assigning an array). 
+
+// For primitive types: 
+int[] myIntArrayA = new int[3];
+Dump(myIntArrayA);
+
+int[] myIntArrayB = {1,2,3};
+Dump(myIntArrayB);
+
+int[] myIntArrayC = new int[]{1,2,3};
+Dump(myIntArrayC);
+
+
+// For classes, for example String, it's the same:
+String[] myStringArrayA = new String[3];
+Dump(myStringArrayA);
+
+String[] myStringArrayB = {"a","b","c"};
+Dump(myStringArrayB);
+
+String[] myStringArrayC = new String[]{"a","b","c"};
+Dump(myStringArrayC);

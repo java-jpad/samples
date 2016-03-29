@@ -1,0 +1,34 @@
+// @url http://stackoverflow.com/questions/4716503/reading-a-plain-text-file-in-java
+
+
+//# Setup
+//## Writing a file out first so we can read later
+String filename = "reading-a-plain-text-file-in-java.txt";
+PrintWriter pwriter = new PrintWriter(filename, "UTF-8");
+pwriter.println("The first line");
+pwriter.println("The second line");
+pwriter.close();
+
+
+//# JAVA7
+List<String> l = Files.readAllLines(Paths.get(filename));
+for(String s : l) {
+	System.out.println(s);
+}
+
+
+//# APACHE
+try (FileInputStream inputStream = new FileInputStream(filename)){
+	String everything = org.apache.commons.io.IOUtils.toString(inputStream);
+	System.out.println(everything);
+}
+
+//# GUAVA
+try {
+	List<String> gl = com.google.common.io.Files.readLines(new File(filename), Charset.forName("UTF-8"));
+	for(String s : gl) {
+		System.out.println(s);
+	}
+} catch (IOException e) {
+	e.printStackTrace();
+}

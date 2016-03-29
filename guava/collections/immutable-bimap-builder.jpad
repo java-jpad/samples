@@ -1,0 +1,12 @@
+final ImmutableBiMap<String, Integer> WORD_TO_INT =
+   new ImmutableBiMap.Builder<String, Integer>()
+       .put("one", 1)
+       .put("two", 2)
+       .put("three", 3)
+       .build();
+
+Dump(WORD_TO_INT);
+Dump(WORD_TO_INT.get("one"));
+Dump("inverse = In Reverse");
+Dump(WORD_TO_INT.inverse());
+Dump(WORD_TO_INT.inverse().get(2));

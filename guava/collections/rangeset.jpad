@@ -1,0 +1,16 @@
+RangeSet<Integer> rangeSet = TreeRangeSet.create();
+
+rangeSet.add(Range.closed(1, 10));
+Dump(rangeSet, "closed range 1 to 10");
+
+rangeSet.add(Range.closedOpen(11, 15));
+Dump(rangeSet);
+
+rangeSet.add(Range.closedOpen(15, 20)); 
+Dump(rangeSet);
+
+rangeSet.add(Range.openClosed(0, 0));
+Dump(rangeSet);
+
+rangeSet.remove(Range.open(5, 10));
+Dump(rangeSet);
